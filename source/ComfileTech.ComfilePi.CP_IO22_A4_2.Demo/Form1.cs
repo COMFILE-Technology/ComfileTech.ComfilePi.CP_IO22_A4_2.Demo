@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -15,6 +16,13 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
+                var model = File.ReadAllText("/proc/device-tree/model").Trim();
+                if (!model.Contains("Compute Module 4S") && !model.Contains("Compute Module 3"))
+                {
+                    MessageBox.Show("This application should only be run on a CPi-A, CPi-B, or CPi-S series panel PC.", Text);
+                    Environment.Exit(0);
+                }
+
                 // Workaround for fullscreen on Raspberry Pi OS Bookworm with Wayland and LabWC
                 LocationChanged += (s, e) => { Location = new Point(0, 0); };
             }
