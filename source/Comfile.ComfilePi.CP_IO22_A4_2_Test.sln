@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comfile.ComfilePi.CP_IO22_A4_2_Test", "Comfile.ComfilePi.CP_IO22_A4_2_Test\Comfile.ComfilePi.CP_IO22_A4_2_Test.csproj", "{A4719794-7B42-48CC-9655-5A6B72A79E23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comfile.ComfilePi", "Comfile.ComfilePi\Comfile.ComfilePi.csproj", "{DC982146-30E6-4422-BEB6-C76B465834B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4719794-7B42-48CC-9655-5A6B72A79E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4719794-7B42-48CC-9655-5A6B72A79E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4719794-7B42-48CC-9655-5A6B72A79E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4719794-7B42-48CC-9655-5A6B72A79E23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC982146-30E6-4422-BEB6-C76B465834B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC982146-30E6-4422-BEB6-C76B465834B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC982146-30E6-4422-BEB6-C76B465834B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC982146-30E6-4422-BEB6-C76B465834B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E054322E-E86C-4E91-9182-99FD8DB53D56}
+	EndGlobalSection
+EndGlobal
