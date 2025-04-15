@@ -20,4 +20,4 @@ The ComfilePi panel PC must have SSH enabled.  Adjust the `ComfilePiUser` and `C
 
 ## Debugging the Application on a ComfilePi Panel PC
 
-Debugging mono applications from within Visual Studio is not currently possible without 3rd party Visual Studio extensions, however, the `ComfilePi` launch profile should provide a convenient development experience from within Visual Studio.
+Debugging mono applications running on a ComfilePi panel PC from within Visual Studio is not currently possible without 3rd party Visual Studio extensions, however, the `ComfilePi` launch profile should provide a convenient development experience from within Visual Studio.
