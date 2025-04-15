@@ -13,7 +13,7 @@ Although the `ComfileTech.ComfilePi.CP_IO22_A4_2.Demo` project is a .NET Framewo
 ## Deploying to a ComfilePi Panel PC
 
 The `ComfileTech.ComfilePi.CP_IO22_A4_2.Demo` project has 2 different launch profiles, which can be found in the `Properties/launchSettings.json` file.  
-* The `Windows` profile is for running the application on a Windows development machine to verify the appearance of the application. The 
-* `ComfilePi` profile will deploy the application to a ComfilePi panel PC over SSH.  
+* The `Windows` profile is for running the application on a Windows development machine to verify the appearance of the application. 
+* The `ComfilePi` profile will deploy the application to a ComfilePi panel PC over SSH.  
 
 The ComfilePi panel PC must have SSH enabled.  Adjust the `ComfilePiUser` and `ComfilePiIpAddress` properties on the `ComfileTech.ComfilePi.CP_IO22_A4_2.Demo.csroj` file to adjust the deployment for your ComfilePi's unique configuration.
