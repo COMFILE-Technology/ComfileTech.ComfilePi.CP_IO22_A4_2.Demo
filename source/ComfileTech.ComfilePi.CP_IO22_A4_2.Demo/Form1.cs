@@ -102,8 +102,6 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
                 index++;
             }
-
-            return;
         }
 
         private void _repositoryUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
