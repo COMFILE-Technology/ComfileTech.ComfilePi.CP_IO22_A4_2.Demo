@@ -19,6 +19,12 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 _gpio = new GpioController();
+
+                // Without this application will take a long tme to close
+                AppDomain.CurrentDomain.ProcessExit += (s, e) =>
+                {
+                    _gpio.Dispose();
+                };
             }
         }
 
@@ -74,7 +80,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
                         _pin.Write(_state ? PinValue.High : PinValue.Low);
                     }
 
-                    // Since ValueChanged events only work for inputs, we need to fire the event manually
+                    // Since ValueChanged events only work for inputs, we need to fire the event manually for outputs
                     if (_pin.GetPinMode() != PinMode.Output)
                     {
                         StateChanged?.Invoke((T)this);

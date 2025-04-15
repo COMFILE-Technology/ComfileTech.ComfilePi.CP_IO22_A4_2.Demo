@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
@@ -106,6 +102,19 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
                 index++;
             }
+
+            return;
+        }
+
+        private void _repositoryUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var linkLabel = sender as LinkLabel;
+            System.Diagnostics.Process.Start(linkLabel.Text);
+        }
+
+        private void _closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
