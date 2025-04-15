@@ -17,3 +17,7 @@ The `ComfileTech.ComfilePi.CP_IO22_A4_2.Demo` project has 2 different launch pro
 * The `ComfilePi` profile will deploy the application to a ComfilePi panel PC over SSH.  
 
 The ComfilePi panel PC must have SSH enabled.  Adjust the `ComfilePiUser` and `ComfilePiIpAddress` properties on the `ComfileTech.ComfilePi.CP_IO22_A4_2.Demo.csroj` file to adjust the deployment for your ComfilePi's unique configuration.
+
+## Debugging the Application on a ComfilePi Panel PC
+
+Debugging mono applications from within Visual Studio is not currently possible without 3rd party Visual Studio extensions, however, the `ComfilePi` launch profile should provide a convenient development experience from within Visual Studio.
