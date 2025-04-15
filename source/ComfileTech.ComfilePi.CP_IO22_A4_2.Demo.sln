@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.35906.104
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComfileTech.ComfilePi.CP_IO22_A4_2.Demo", "ComfileTech.ComfilePi.CP_IO22_A4_2.Demo\ComfileTech.ComfilePi.CP_IO22_A4_2.Demo.csproj", "{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComfileTech.ComfilePi.CP_IO22_A4_2", "ComfileTech.ComfilePi.CP_IO22_A4_2\ComfileTech.ComfilePi.CP_IO22_A4_2.csproj", "{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		ComfilePi|Any CPU = ComfilePi|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}.ComfilePi|Any CPU.ActiveCfg = ComfilePi|Any CPU
+		{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}.ComfilePi|Any CPU.Build.0 = ComfilePi|Any CPU
+		{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41EEEA8E-D53F-B02F-BCBC-9F96A0A56D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}.ComfilePi|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}.ComfilePi|Any CPU.Build.0 = Release|Any CPU
+		{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF44615-7EF9-4A2D-885B-39CD4FC05B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A69C32CE-C1CE-4427-9831-51A5E4F051E4}
+	EndGlobalSection
+EndGlobal

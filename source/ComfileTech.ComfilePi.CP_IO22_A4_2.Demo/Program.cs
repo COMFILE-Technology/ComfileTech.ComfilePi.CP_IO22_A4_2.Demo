@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Comfile.ComfilePi.CP_IO22_A4_2_Test
+namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.

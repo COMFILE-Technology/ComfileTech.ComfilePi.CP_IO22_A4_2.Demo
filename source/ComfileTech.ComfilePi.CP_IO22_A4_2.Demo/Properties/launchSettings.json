@@ -1,0 +1,13 @@
+{
+    "profiles": {
+        "Windows": {
+            "commandName": "Project"
+        },
+        "ComfilePi": {
+            "commandName": "Executable",
+            "executablePath": "C:\\Windows\\System32\\cmd.exe",
+            "commandLineArgs": "/k \"scp -r $(ProjectDir)$(OutDir)\\* $(ComfilePiUser)@$(ComfilePiIpAddress):$(ProjectName) && ssh -t $(ComfilePiUser)@$(ComfilePiIpAddress) \"cd $(ProjectName) && DISPLAY=:0.0 mono $(TargetName).exe\"\"",
+            "remoteDebugEnabled": false
+        }
+    }
+}
