@@ -4,7 +4,7 @@
       "commandName": "Project"
     },
     "ComfilePi": {
-      "commandName": "MonoDebugger",
+      "commandName": "RemoteMonoDebugger",
       "RemoteMachine": "192.168.0.10",
       "RemoteUser": "pi"
     }
