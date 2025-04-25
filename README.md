@@ -1,5 +1,7 @@
 # ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
+<img src="./images/screenshot.png" />
+
 This is a .NET Framework Winforms application to demonstrate features of the [CP-IO22-A4-2](https://comfiletech.com/raspberry-pi-panel-pc/cp-io22-a4-2-digital-analog-i-o-board-for-the-cpi-s-series/) IO board for COMFILE Technology's [ComfilePi industrial touchscreen panel PCs](https://comfiletech.com/linux-panel-pc/), and how to program it.
 
 Execution on a ComfilePi panel PC requires [Mono](https://gitlab.winehq.org/mono/mono), which should already be installed by default on the ComfilePi panel PCs.
