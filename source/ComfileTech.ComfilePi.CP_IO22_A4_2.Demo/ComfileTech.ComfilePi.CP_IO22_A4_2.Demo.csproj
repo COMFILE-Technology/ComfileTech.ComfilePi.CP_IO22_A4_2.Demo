@@ -7,8 +7,6 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Configurations>Debug;Release;ComfilePi</Configurations>
     <AssemblyName>Demo</AssemblyName>
-    <ComfilePiUser>pi</ComfilePiUser>
-    <ComfilePiIpAddress>192.168.0.12</ComfilePiIpAddress>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ComfilePi|AnyCPU'">
     <Optimize>True</Optimize>
