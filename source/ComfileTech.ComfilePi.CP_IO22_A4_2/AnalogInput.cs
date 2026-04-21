@@ -1,9 +1,7 @@
-﻿using Iot.Device.Ads1115;
 using System;
 using System.Collections.Generic;
 using System.Device.I2c;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
 
 namespace ComfileTech.ComfilePi.CP_IO22_A4_2
@@ -13,7 +11,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
     /// </summary>
     public class AnalogInput
     {
-        static readonly Ads1115 _ads1115;
+        static readonly Ads1115Device _ads1115;
         static readonly Thread _thread;
 
         static AnalogInput()
@@ -29,11 +27,8 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
             // Begin reading the analog inputs
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                _ads1115 = new Ads1115(I2cDevice.Create(new I2cConnectionSettings(1, 0x48)));
-                _ads1115.DataRate = DataRate.SPS128;
-                _ads1115.MeasuringRange = MeasuringRange.FS6144;
-                _ads1115.InputMultiplexer = InputMultiplexer.AIN0;
-                _ads1115.DeviceMode = DeviceMode.PowerDown;
+                _ads1115 = new Ads1115Device(I2cDevice.Create(new I2cConnectionSettings(1, 0x48)));
+                AppDomain.CurrentDomain.ProcessExit += (s, e) => _ads1115.Dispose();
 
                 _thread = new Thread(Read);
                 _thread.IsBackground = true;
@@ -43,23 +38,20 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
 
         static void Read()
         {
-            while(true)
+            while (true)
             {
-                var index = (int)_ads1115.InputMultiplexer - 4;
-                var input = AnalogInputs[index];
-                input.Voltage = _ads1115.ReadVoltage().Volts;
-
-                // Advance to the next channel, and start conversion.
-                index++;
-                _ads1115.InputMultiplexer = InputMultiplexer.AIN0 + (index % 4);
-
-                Thread.Yield();
+                for (int index = 0; index < AnalogInputs.Count; index++)
+                {
+                    var input = AnalogInputs[index];
+                    input.Voltage = _ads1115.ReadVoltage(index);
+                    Thread.Yield();
+                }
             }
         }
 
         internal static IReadOnlyList<AnalogInput> AnalogInputs { get; }
 
-        private AnalogInput(int channel) 
+        private AnalogInput(int channel)
         {
             Channel = channel;
         }
@@ -70,6 +62,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
         public int Channel { get; }
 
         double _voltage;
+
         /// <summary>
         /// The voltage as read from the analog input.
         /// </summary>

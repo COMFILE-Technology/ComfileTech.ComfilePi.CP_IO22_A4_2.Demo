@@ -8,7 +8,6 @@ The demo uses Microsoft's WinForms implementation when targeting Windows (`net10
 
 This application uses the following .NET libraries:
 * [System.Device.Gpio](https://www.nuget.org/packages/System.Device.Gpio/)
-* [Iot.Device.Bindings](https://www.nuget.org/packages/Iot.Device.Bindings/)
 * [ComfileTech.WinForms](https://www.comfilewiki.co.kr/en/doku.php?id=winforms:index)
 
 Both the `ComfileTech.ComfilePi.CP_IO22_A4_2.Demo` project and the `ComfileTech.ComfilePi.CP_IO22_A4_2` project now target .NET 10.

@@ -1,10 +1,4 @@
-﻿using Iot.Device.Ads1115;
-using System;
 using System.Collections.Generic;
-using System.Device.Gpio;
-using System.Device.I2c;
-using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace ComfileTech.ComfilePi.CP_IO22_A4_2
 {
@@ -21,10 +15,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
         /// <summary>
         /// The singleton instance of this class.
         /// </summary>
-        public static CP_IO22_A4_2 Instance
-        {
-            get; private set;
-        }
+        public static CP_IO22_A4_2 Instance { get; private set; }
 
         private CP_IO22_A4_2()
         {
@@ -35,6 +26,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
                 {
                     list.Add(new DigitalInput(i));
                 }
+
                 list.Add(new DigitalInput(16));
                 DigitalInputs = list.AsReadOnly();
             }
@@ -46,6 +38,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
                 {
                     list.Add(new DigitalOutput(i));
                 }
+
                 DigitalOutputs = list.AsReadOnly();
             }
 
@@ -56,41 +49,29 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
                 {
                     list.Add(new AnalogOutput(i));
                 }
+
                 AnalogOutputs = list.AsReadOnly();
             }
-
         }
 
         /// <summary>
         /// The digital inputs for the IO board.
         /// </summary>
-        public IReadOnlyList<DigitalInput> DigitalInputs
-        {
-            get;
-        }
+        public IReadOnlyList<DigitalInput> DigitalInputs { get; }
 
         /// <summary>
         /// The digital outputs for the IO board.
         /// </summary>
-        public IReadOnlyList<DigitalOutput> DigitalOutputs
-        {
-            get;
-        }
+        public IReadOnlyList<DigitalOutput> DigitalOutputs { get; }
 
         /// <summary>
         /// The analog inputs for the IO board.
         /// </summary>
-        public IReadOnlyList<AnalogInput> AnalogInputs
-        {
-            get => AnalogInput.AnalogInputs;
-        }
+        public IReadOnlyList<AnalogInput> AnalogInputs => AnalogInput.AnalogInputs;
 
         /// <summary>
         /// The analog outputs for the IO board.
         /// </summary>
-        public IReadOnlyList<AnalogOutput> AnalogOutputs
-        {
-            get;
-        }
+        public IReadOnlyList<AnalogOutput> AnalogOutputs { get; }
     }
 }

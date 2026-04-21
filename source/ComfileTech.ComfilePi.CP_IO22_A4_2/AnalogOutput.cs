@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Device.I2c;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using UnitsNet;
 
 namespace ComfileTech.ComfilePi.CP_IO22_A4_2
 {
@@ -29,13 +25,13 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
 
         void Init(ushort value)
         {
-            byte address = (0b011 << 5) | (0b00 << 3) | (0b00 << 2) | 0;
+            byte address = (0b011 << 5) | (0b00 << 3) | (0b00 << 2);
             Write(address, value);
         }
 
         void Write(ushort value)
         {
-            byte address = (0b010 << 5) | (0b00 << 3) | (0b00 << 2) | 0;
+            byte address = (0b010 << 5) | (0b00 << 3) | (0b00 << 2);
             Write(address, value);
         }
 
@@ -46,7 +42,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
 
         void Write(byte address, ushort value)
         {
-            value = (ushort)(value << 4);  // only 12 bits
+            value = (ushort)(value << 4); // only 12 bits
             _i2cDevice.Write(new byte[] { address, (byte)((value >> 8) & 0xFF), (byte)(value & 0xFF) });
         }
 
@@ -55,7 +51,8 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
         /// </summary>
         public int Channel { get; }
 
-        private double _voltage;
+        double _voltage;
+
         /// <summary>
         /// The raw binary value from 0 ~ 5.0V (12 bits) that is written to the analog output.
         /// </summary>
