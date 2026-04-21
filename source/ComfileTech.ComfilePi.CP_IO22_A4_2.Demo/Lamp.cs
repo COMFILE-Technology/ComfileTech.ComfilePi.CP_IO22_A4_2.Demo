@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -25,6 +25,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         /// The image to display when the lamp is on.
         /// </summary>
         [Description("The image to display when the lamp is on.")]
+        [DefaultValue(null)]
         public Image OnImage
         {
             get; set;
@@ -34,6 +35,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         /// The image to display when the lamp is off.
         /// </summary>
         [Description("The image to display when the lamp is off.")]
+        [DefaultValue(null)]
         public Image OffImage
         {
             get; set;
@@ -45,6 +47,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         /// The current state of the lamp.  `true` means the lamp is on, `false` means the lamp is off.
         /// </summary>
         [Description("The current state of the lamp.  `true` means the lamp is on, `false` means the lamp is off.")]
+        [DefaultValue(false)]
         public bool State
         {
             get { return _state; }
@@ -76,7 +79,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
                 }
             }
 
-            using(var b = new SolidBrush(ForeColor))
+            using (var b = new SolidBrush(ForeColor))
             {
                 using (var sf = new StringFormat
                 {
@@ -87,7 +90,6 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
                     pe.Graphics.DrawString(Text, Font, b, ClientRectangle, sf);
                 }
             }
-            
 
             base.OnPaint(pe);
         }

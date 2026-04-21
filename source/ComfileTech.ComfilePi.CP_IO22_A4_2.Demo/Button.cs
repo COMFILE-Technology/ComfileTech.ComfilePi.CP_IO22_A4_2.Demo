@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -25,6 +25,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         /// The image to display when the button is pressed.
         /// </summary>
         [Description("The image to display when the button is pressed.")]
+        [DefaultValue(null)]
         public Image PressedImage
         {
             get; set;
@@ -34,16 +35,19 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         /// The image to display when the button is released.
         /// </summary>
         [Description("The image to display when the button is released.")]
+        [DefaultValue(null)]
         public Image ReleasedImage
         {
             get; set;
         }
 
         private bool _state;
+
         /// <summary>
         /// The current state of the button.  `true` means the button is pressed, `false` means the button is released.
         /// </summary>
         [Description("The current state of the button.  `true` means the button is pressed, `false` means the button is released.")]
+        [DefaultValue(false)]
         public bool State
         {
             get { return _state; }
@@ -56,7 +60,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
                     StateChanged?.Invoke(this, EventArgs.Empty);
 
                     Invalidate();
-                    Update(); 
+                    Update();
                 }
             }
         }
@@ -77,7 +81,6 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-
             if (State)
             {
                 if (PressedImage != null)

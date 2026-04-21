@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
@@ -13,6 +15,8 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         public Form1()
         {
             InitializeComponent();
+
+            var uiContext = SynchronizationContext.Current;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
@@ -41,7 +45,20 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
                 input.StateChanged += (di) =>
                 {
-                    lamp.State = di.State;
+                    if (uiContext != null)
+                    {
+                        uiContext.Post(_ =>
+                        {
+                            if (!IsDisposed && !lamp.IsDisposed)
+                            {
+                                lamp.State = di.State;
+                            }
+                        }, null);
+                    }
+                    else if (!IsDisposed && !lamp.IsDisposed)
+                    {
+                        lamp.State = di.State;
+                    }
                 };
 
                 index++;
@@ -80,14 +97,28 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
                 input.VoltageChanged += (ai) =>
                 {
-                    label.Text = $"{input.Voltage:0.000}V";
-                    label.Update();
+                    if (uiContext != null)
+                    {
+                        uiContext.Post(_ =>
+                        {
+                            if (!IsDisposed && !label.IsDisposed)
+                            {
+                                label.Text = $"{input.Voltage:0.000}V";
+                                label.Update();
+                            }
+                        }, null);
+                    }
+                    else if (!IsDisposed && !label.IsDisposed)
+                    {
+                        label.Text = $"{input.Voltage:0.000}V";
+                        label.Update();
+                    }
                 };
 
                 index++;
             }
 
-            // On Linux, bind the digital output buttons to the IO board's digital outputs
+            // On Linux, bind the analog output buttons to the IO board's analog outputs
             var trackBars = _analogOutputPanel.Controls.OfType<TrackBar>().ToArray();
             labels = _analogOutputPanel.Controls.OfType<Label>().ToArray();
 
@@ -114,8 +145,14 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 
         private void _repositoryUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var linkLabel = sender as LinkLabel;
-            System.Diagnostics.Process.Start(linkLabel.Text);
+            if (sender is LinkLabel linkLabel)
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = linkLabel.Text,
+                    UseShellExecute = true
+                });
+            }
         }
 
         private void _closeButton_Click(object sender, EventArgs e)
