@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComfileTech.ComfilePi.CP_IO22_A4_2;
 
 namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
 {
@@ -16,7 +17,14 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            try
+            {
+                Application.Run(new Form1());
+            }
+            finally
+            {
+                CP_IO22_A4_2.Instance.Dispose();
+            }
         }
     }
 }

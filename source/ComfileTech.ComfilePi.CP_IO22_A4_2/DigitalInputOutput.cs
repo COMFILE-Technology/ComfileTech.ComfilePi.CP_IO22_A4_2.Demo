@@ -13,6 +13,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
         where T : DigitalInputOutput<T>
     {
         static readonly GpioController _gpio;
+        static bool _gpioDisposed;
 
         static DigitalInputOutput()
         {
@@ -23,9 +24,20 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
                 // Without this application will take a long tme to close
                 AppDomain.CurrentDomain.ProcessExit += (s, e) =>
                 {
-                    _gpio.Dispose();
+                    DisposeGpioControllerCore();
                 };
             }
+        }
+
+        private protected static void DisposeGpioControllerCore()
+        {
+            if (_gpioDisposed)
+            {
+                return;
+            }
+
+            _gpio?.Dispose();
+            _gpioDisposed = true;
         }
 
         private protected DigitalInputOutput(int number, PinMode mode)

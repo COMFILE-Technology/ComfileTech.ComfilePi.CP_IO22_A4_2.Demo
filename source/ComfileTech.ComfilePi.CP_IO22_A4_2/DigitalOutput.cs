@@ -15,6 +15,11 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
             : base(number, PinMode.Output)
         { }
 
+        internal static void DisposeGpioController()
+        {
+            DisposeGpioControllerCore();
+        }
+
         /// <summary>
         /// Gets or sets the current state of the digital output.  `true` means the pin is high, `false` means the pin is low.
         /// </summary>

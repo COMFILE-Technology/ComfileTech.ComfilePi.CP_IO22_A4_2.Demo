@@ -7,7 +7,7 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
     /// <summary>
     /// An analog output on the IO board.
     /// </summary>
-    public class AnalogOutput
+    public class AnalogOutput : IDisposable
     {
         internal AnalogOutput(int channel)
         {
@@ -82,6 +82,23 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
                     }
                 }
             }
+        }
+
+        bool _disposed;
+
+        /// <summary>
+        /// Releases the I2C resource used by the analog output.
+        /// </summary>
+        public void Dispose()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            _i2cDevice?.Dispose();
+            _disposed = true;
+            GC.SuppressFinalize(this);
         }
     }
 }

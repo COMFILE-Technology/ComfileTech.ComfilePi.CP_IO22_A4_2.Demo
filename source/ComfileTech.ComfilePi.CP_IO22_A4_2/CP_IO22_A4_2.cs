@@ -5,17 +5,12 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
     /// <summary>
     /// Represents the CP-IO22-A4-2 IO board connected to the ComfilePi.
     /// </summary>
-    public class CP_IO22_A4_2
+    public class CP_IO22_A4_2 : System.IDisposable
     {
-        static CP_IO22_A4_2()
-        {
-            Instance = new CP_IO22_A4_2();
-        }
-
         /// <summary>
         /// The singleton instance of this class.
         /// </summary>
-        public static CP_IO22_A4_2 Instance { get; private set; }
+        public static CP_IO22_A4_2 Instance { get; } = new CP_IO22_A4_2();
 
         private CP_IO22_A4_2()
         {
@@ -73,5 +68,30 @@ namespace ComfileTech.ComfilePi.CP_IO22_A4_2
         /// The analog outputs for the IO board.
         /// </summary>
         public IReadOnlyList<AnalogOutput> AnalogOutputs { get; }
+
+        bool _disposed;
+
+        /// <summary>
+        /// Releases the GPIO and I2C resources used by the IO board.
+        /// </summary>
+        public void Dispose()
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            DigitalInput.DisposeGpioController();
+            DigitalOutput.DisposeGpioController();
+            AnalogInput.DisposeAds1115Device();
+
+            foreach (var analogOutput in AnalogOutputs)
+            {
+                analogOutput.Dispose();
+            }
+
+            _disposed = true;
+            System.GC.SuppressFinalize(this);
+        }
     }
 }
