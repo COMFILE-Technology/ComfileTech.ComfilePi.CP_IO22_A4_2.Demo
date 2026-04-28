@@ -17,14 +17,14 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-    <PackageReference Include="ComfileTech.WinForms" Version="2.0.2" />
+    <PackageReference Include="ComfileTech.WinForms" Version="2.0.3" />
   </ItemGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0' Or '$(TargetFramework)' == ''">
     <TargetFramework>net10.0</TargetFramework>
     <UseWindowsForms>false</UseWindowsForms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComfileTech.ComfilePi.CP_IO22_A4_2\ComfileTech.ComfilePi.CP_IO22_A4_2.csproj" />
