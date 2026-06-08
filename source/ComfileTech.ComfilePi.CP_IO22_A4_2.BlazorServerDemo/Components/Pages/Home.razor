@@ -1,0 +1,101 @@
+@page "/"
+@implements IDisposable
+@inject BoardStateService BoardState
+
+<PageTitle>CP-IO22-A4-2 Demo</PageTitle>
+
+<main class="viewport">
+    <section class="demo-surface" aria-label="CP-IO22-A4-2 demo">
+        @if (_snapshot.IsDisabled && !string.IsNullOrWhiteSpace(_snapshot.ErrorMessage))
+        {
+            <div class="status-message" role="status">@_snapshot.ErrorMessage</div>
+        }
+
+        <h1 class="section-title digital-input-title">DIGITAL INPUTS</h1>
+        <div class="channel-row digital-inputs">
+            @foreach (var input in _snapshot.DigitalInputs)
+            {
+                <div class="image-channel" @key="input.Number">
+                    <img src="@LampImage(input.State)" alt="" draggable="false" />
+                    <span>@input.Number</span>
+                </div>
+            }
+        </div>
+
+        <h1 class="section-title digital-output-title">DIGITAL OUTPUTS</h1>
+        <div class="channel-row digital-outputs">
+            @foreach (var output in _snapshot.DigitalOutputs)
+            {
+                <button class="image-channel output-channel" type="button" @key="output.Number" disabled="@_snapshot.IsDisabled" @onclick="() => ToggleDigitalOutput(output)">
+                    <img src="@ButtonImage(output.State)" alt="" draggable="false" />
+                    <span>@output.Number</span>
+                </button>
+            }
+        </div>
+
+        <h1 class="section-title analog-input-title">ANALOG INPUTS</h1>
+        <div class="analog-inputs">
+            @foreach (var input in _snapshot.AnalogInputs)
+            {
+                <div class="analog-value" @key="input.Channel">@FormatVoltage(input.Voltage)</div>
+            }
+        </div>
+
+        <h1 class="section-title analog-output-title">ANALOG OUTPUTS</h1>
+        <div class="analog-outputs">
+            @foreach (var output in _snapshot.AnalogOutputs)
+            {
+                <div class="analog-output" @key="output.Channel">
+                    <label for="@($"analog-output-{output.Channel}")">@FormatVoltage(output.Voltage)</label>
+                    <input id="@($"analog-output-{output.Channel}")" type="range" min="0" max="5000" step="1" value="@VoltageToMillivolts(output.Voltage)" disabled="@_snapshot.IsDisabled" @oninput="eventArgs => SetAnalogOutput(output.Channel, eventArgs)" />
+                </div>
+            }
+        </div>
+
+        <a class="repository-url" href="https://github.com/COMFILE-Technology/ComfileTech.ComfilePi.CP_IO22_A4_2.Demo" target="_blank" rel="noopener noreferrer">
+            https://github.com/COMFILE-Technology/ComfileTech.ComfilePi.CP_IO22_A4_2.Demo
+        </a>
+    </section>
+</main>
+
+@code {
+    private BoardSnapshot _snapshot = default!;
+
+    protected override void OnInitialized()
+    {
+        _snapshot = BoardState.GetSnapshot();
+        BoardState.StateChanged += BoardState_StateChanged;
+    }
+
+    private void BoardState_StateChanged()
+    {
+        _snapshot = BoardState.GetSnapshot();
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private void ToggleDigitalOutput(DigitalChannelSnapshot output)
+    {
+        BoardState.SetDigitalOutput(output.Number, !output.State);
+    }
+
+    private void SetAnalogOutput(int channel, ChangeEventArgs eventArgs)
+    {
+        if (double.TryParse(Convert.ToString(eventArgs.Value, System.Globalization.CultureInfo.InvariantCulture), out var millivolts))
+        {
+            BoardState.SetAnalogOutput(channel, millivolts / 1000.0);
+        }
+    }
+
+    private static string LampImage(bool state) => state ? "images/green_on.png" : "images/green_off.png";
+
+    private static string ButtonImage(bool state) => state ? "images/blue_on.png" : "images/blue_off.png";
+
+    private static string FormatVoltage(double voltage) => $"{voltage:0.000}V";
+
+    private static int VoltageToMillivolts(double voltage) => (int)Math.Round(Math.Clamp(voltage, 0.0, 5.0) * 1000.0);
+
+    public void Dispose()
+    {
+        BoardState.StateChanged -= BoardState_StateChanged;
+    }
+}

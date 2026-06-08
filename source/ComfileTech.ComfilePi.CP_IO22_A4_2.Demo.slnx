@@ -3,6 +3,7 @@
     <File Path="../.gitignore" />
     <File Path="../README.md" />
   </Folder>
+  <Project Path="ComfileTech.ComfilePi.CP_IO22_A4_2.BlazorServerDemo/ComfileTech.ComfilePi.CP_IO22_A4_2.BlazorServerDemo.csproj" />
   <Project Path="ComfileTech.ComfilePi.CP_IO22_A4_2.Demo/ComfileTech.ComfilePi.CP_IO22_A4_2.Demo.csproj" />
   <Project Path="ComfileTech.ComfilePi.CP_IO22_A4_2/ComfileTech.ComfilePi.CP_IO22_A4_2.csproj" />
 </Solution>
